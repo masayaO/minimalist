@@ -1,0 +1,13 @@
+version: "3"
+services:
+  example-mysql:
+    container_name: minimalist
+    image: mysql:8.0
+    ports:
+      - "5306:3306"
+    environment:
+      MYSQL_DATABASE: minimalist
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+
