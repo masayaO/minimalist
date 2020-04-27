@@ -1,0 +1,28 @@
+<div class="wrapper">
+  <div class="container">
+
+    <h3>Item</h3>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="itemName">Item Name</label>
+        <input type="text" class="form-control" id="itemName" formControlName="itemName">
+      </div>
+      <div class="form-group">
+        <label for="itemComment">Item Comment</label>
+        <input type="text" class="form-control" id="itemComment" formControlName="itemComment">
+      </div>
+      <div class="form-group">
+        <label for="itemQuantity">Item Count</label>
+        <input type="number" class="form-control" id="itemQuantity" formControlName="itemQuantity">
+      </div>
+      <div class="form-group">
+        <label for="itemImageUrl">Image URL</label>
+        <input type="text" class="form-control" id="itemImageUrl" formControlName="itemImageUrl">
+      </div>
+      <button type="submit" [disabled]="!form.valid" class="btn btn-dark">Submit</button>
+    </form>
+  </div>
+  {{form.valid}}
+</div>
+

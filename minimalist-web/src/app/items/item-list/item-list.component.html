@@ -1,0 +1,13 @@
+<div class="container itemList-wrapper">
+  <div class="row row-cols-1 row-cols-md-4">
+    <div *ngFor="let item of items" class="col mb-3">
+      <div class="card">
+        <img src="{{hasImage(item)}}" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{item.itemName}}</h5>
+          <p class="card-text">{{item.itemComment}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
