@@ -1,14 +1,16 @@
 package controllers
 
 import javax.inject.Inject
-import jdbc.models.Items.i
-import play.api.mvc.{AbstractController, ControllerComponents}
-import scalikejdbc._
 import jdbc.models._
 import models.Item
-import play.api.libs.json.Json
+import models.command.ItemInfo
+import play.api.libs.json.{JsError, JsValue, Json}
+import play.api.mvc.{AbstractController, Action, ControllerComponents}
+import repositories.ItemRepository
+import scalikejdbc._
 
-class ItemController @Inject() (components: ControllerComponents) extends AbstractController(components) {
+class ItemController @Inject() (components: ControllerComponents, itemRepository: ItemRepository)
+    extends AbstractController(components) {
 
   def list(minimalistId: Long) = Action { implicit req =>
     val i = Items.syntax("i")
@@ -24,11 +26,24 @@ class ItemController @Inject() (components: ControllerComponents) extends Abstra
           itemName = item.itemName,
           itemComment = item.itemComment,
           itemQuantity = item.itemQuantity,
-          itemStatus = item.itemStatus
+          itemStatus = item.itemStatus,
+          itemImageUrl = item.itemImageUrl
         )
       }
 
       Ok(Json.obj("items" -> itemsForResponse))
     }
+  }
+
+  def create(): Action[JsValue] = Action(parse.json) { implicit req =>
+    req.body
+      .validate[ItemInfo]
+      .map { itemInfo =>
+        itemRepository.createItem(itemInfo)
+        Ok(Json.obj("result" -> "success"))
+      }
+      .recoverTotal { e =>
+        BadRequest(Json.obj("result" -> "failure", "error" -> JsError.toJson(e)))
+      }
   }
 }
