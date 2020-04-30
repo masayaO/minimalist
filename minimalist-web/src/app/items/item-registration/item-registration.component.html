@@ -1,28 +1,39 @@
 <div class="wrapper">
   <div class="container">
-
-    <h3>Item</h3>
-
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="itemName">Item Name</label>
-        <input type="text" class="form-control" id="itemName" formControlName="itemName">
+    <div class="row">
+      <div class="col-6">
+        <h3>Item</h3>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="itemName">Item Name</label>
+            <input type="text" class="form-control" id="itemName" formControlName="itemName">
+          </div>
+          <div class="form-group">
+            <label for="itemComment">Item Comment</label>
+            <input type="text" class="form-control" id="itemComment" formControlName="itemComment">
+          </div>
+          <div class="form-group">
+            <label for="itemQuantity">Item Count</label>
+            <input type="number" class="form-control" id="itemQuantity" formControlName="itemQuantity">
+          </div>
+          <div class="form-group">
+            <label for="itemImageUrl">Image URL</label>
+            <input type="text" class="form-control" id="itemImageUrl" formControlName="itemImageUrl">
+          </div>
+          <button type="submit" [disabled]="!form.valid" class="btn btn-dark">Submit</button>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="itemComment">Item Comment</label>
-        <input type="text" class="form-control" id="itemComment" formControlName="itemComment">
+      <div class="col-1"></div>
+      <div class="col-5">
+        <div class="card">
+          <img src="{{hasImage(form.get('itemImageUrl').value)}}" class="card-img-top" alt="画像が読み取れません">
+          <div class="card-body">
+            <h5 class="card-title">{{form.get('itemName').value}}</h5>
+            <p class="card-text">{{form.get('itemComment').value}}</p>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="itemQuantity">Item Count</label>
-        <input type="number" class="form-control" id="itemQuantity" formControlName="itemQuantity">
-      </div>
-      <div class="form-group">
-        <label for="itemImageUrl">Image URL</label>
-        <input type="text" class="form-control" id="itemImageUrl" formControlName="itemImageUrl">
-      </div>
-      <button type="submit" [disabled]="!form.valid" class="btn btn-dark">Submit</button>
-    </form>
+    </div>
   </div>
-  {{form.valid}}
 </div>
 

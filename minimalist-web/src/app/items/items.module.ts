@@ -5,6 +5,7 @@ import {ItemsRoutingModule} from "./items-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ItemRegistrationComponent} from './item-registration/item-registration.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     ItemsRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   declarations: [ItemListComponent, ItemRegistrationComponent],
 })

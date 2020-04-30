@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Item} from "../../shared/Item";
 import {ItemListHttpService} from "../shared/http/item-list-http.service";
+import {faPlus} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-item-list',
@@ -10,7 +11,9 @@ import {ItemListHttpService} from "../shared/http/item-list-http.service";
 export class ItemListComponent implements OnInit {
 
   items: Item[];
-  sampleImageUrl: string = 'https://lh3.googleusercontent.com/proxy/0uTqaUeqmcOLRh3btIIbW93YKuITINg3EryQM09hy-IdmAepJzJ9nIh5XN3Ha9LiHYEyBFFjtbgkmxUSmd1OpBffKBMe-fsKsiou8l8';
+  sampleImageUrl: string = 'https://lh3.googleusercontent.com/proxy/4gmh4UQiDWuDED2ZVCTaDfIZfqHa62Vi0kr6XMc650bl1gYXZ65WUWKssJt43S5qDtbMeDl1xzGe3oRO10l4XA-bQsYrvLmposq8Hhs';
+
+  faPlus = faPlus
 
   constructor(
     private httpService: ItemListHttpService
@@ -26,10 +29,10 @@ export class ItemListComponent implements OnInit {
   }
 
   hasImage(item: Item): string {
-    if (item.itemImageUrl == null){
-      return this.sampleImageUrl
-    }else {
+    if (item.itemImageUrl){
       return item.itemImageUrl
+    }else {
+      return this.sampleImageUrl
     }
   }
 }

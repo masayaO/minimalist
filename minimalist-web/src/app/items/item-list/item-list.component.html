@@ -1,4 +1,9 @@
+
+
 <div class="container itemList-wrapper">
+  <div class="mx-auto">
+    <a routerLink="/items/register" style="text-align: center"><fa-icon [icon]="faPlus" size="3x"></fa-icon></a>
+  </div>
   <div class="row row-cols-1 row-cols-md-4">
     <div *ngFor="let item of items" class="col mb-3">
       <div class="card">
