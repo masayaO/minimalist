@@ -13,6 +13,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class ItemRegistrationComponent implements OnInit {
   form: FormGroup;
   private x: string;
+  private y: string;
 
   constructor(
     private fb: FormBuilder,
